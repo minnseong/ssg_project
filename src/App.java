@@ -1,20 +1,19 @@
-import java.util.Scanner;
+import controller.WiseSayingController;
+import util.Rq;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class App {
 
     private Scanner sc;
-
+    private WiseSayingController wiseSayingController;
     public App() {
         sc = new Scanner(System.in);
+        wiseSayingController = new WiseSayingController(sc);
     }
 
     public void run() {
         System.out.println("== 명언 SSG ==");
-
-        WiseSayingController wiseSayingController = new WiseSayingController(sc);
 
         outer:
         while (true) {
