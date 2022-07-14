@@ -2,7 +2,7 @@ package controller;
 
 import domain.WiseSaying;
 import service.WiseSayingService;
-import util.Rq;
+import Request.Rq;
 
 import java.util.List;
 import java.util.Scanner;

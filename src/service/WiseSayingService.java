@@ -2,10 +2,8 @@ package service;
 
 import domain.WiseSaying;
 import repository.WiseSayingRepository;
-import util.Rq;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class WiseSayingService {
     private WiseSayingRepository wiseSayingRepository;

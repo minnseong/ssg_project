@@ -1,5 +1,5 @@
 import controller.WiseSayingController;
-import util.Rq;
+import Request.Rq;
 
 import java.util.Scanner;
 
