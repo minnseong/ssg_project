@@ -1,5 +1,5 @@
 import controller.WiseSayingController;
-import Request.Rq;
+import request.Rq;
 
 import java.util.Scanner;
 
@@ -7,6 +7,7 @@ public class App {
 
     private Scanner sc;
     private WiseSayingController wiseSayingController;
+
     public App() {
         sc = new Scanner(System.in);
         wiseSayingController = new WiseSayingController(sc);
@@ -34,6 +35,9 @@ public class App {
                     break;
                 case "목록":
                     wiseSayingController.list(rq);
+                    break;
+                case "빌드":
+                    wiseSayingController.build(rq);
                     break;
                 case "종료":
                     break outer;

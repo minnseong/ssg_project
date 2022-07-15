@@ -2,7 +2,7 @@ package controller;
 
 import domain.WiseSaying;
 import service.WiseSayingService;
-import Request.Rq;
+import request.Rq;
 
 import java.util.List;
 import java.util.Scanner;
@@ -85,5 +85,9 @@ public class WiseSayingController {
         wiseSayingService.remove(paramId);
 
         System.out.printf("%d번 명언이 삭제되었습니다.\n", paramId);
+    }
+
+    public void build(Rq rq) {
+        wiseSayingService.dumpToJson();
     }
 }

@@ -15,9 +15,6 @@ import java.util.stream.Stream;
 
 public class Util {
     public static void saveToFile(String path, String body) {
-        // 파일 삭제
-        new File(path).delete();
-
         try (RandomAccessFile stream = new RandomAccessFile(path, "rw");
              FileChannel channel = stream.getChannel()) {
             byte[] strBytes = body.getBytes();
@@ -115,5 +112,32 @@ public class Util {
         } catch (IOException e) {
             return new ArrayList<>();
         }
+    }
+
+    public static Map<String, Object> jsonToMapFromFile(String path) {
+        String json = readFromFile(path);
+
+        if (json.isEmpty()) {
+            return null;
+        }
+
+        final String[] jsonBits = json
+                .replaceAll("\\{", "")
+                .replaceAll("\\}", "")
+                .split(",");
+
+        final List<Object> bits = Stream.of(jsonBits)
+                .map(String::trim)
+                .flatMap(bit -> Arrays.stream(bit.split(":")))
+                .map(String::trim)
+                .map(s -> s.startsWith("\"") ? s.substring(1, s.length() - 1) : Integer.parseInt(s))
+                .collect(Collectors.toList());
+
+        Map<String, Object> map = IntStream
+                .range(0, bits.size() / 2)
+                .mapToObj(i -> Pair.of((String) bits.get(i * 2), bits.get(i * 2 + 1)))
+                .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue(), (key1, key2) -> key1, LinkedHashMap::new));
+
+        return map;
     }
 }
